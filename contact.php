@@ -119,12 +119,12 @@
     }
     ?>
 
-    <form method="post" action="">
+    <form method="post" action="" onsubmit="return validateForm();">
         <label>ชื่อ-นามสกุล:</label>
         <input type="text" name="name" value="<?= htmlspecialchars($name) ?>">
 
         <label>อีเมล:</label>
-        <input type="email" name="email" value="<?= htmlspecialchars($email) ?>">
+        <input type="email" id="email" name="email" value="<?= htmlspecialchars($email) ?>">
 
         <label>หัวข้อ:</label>
         <input type="text" name="subject" value="<?= htmlspecialchars($subject) ?>">
@@ -135,6 +135,19 @@
         <input type="submit" value="ส่งข้อความ">
     </form>
 </div>
+<script>
+function validateForm() {
+    const email = document.getElementById("email").value.trim();
+    
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+    if (!emailPattern.test(email)) {
+        alert("รูปแบบอีเมลไม่ถูกต้อง");
+        return false; 
+    }
+
+    return true;
+}
+</script>
 </body>
 </html>
